@@ -1,6 +1,11 @@
-FROM eclipse-temurin:17-jre
-WORKDIR /app
-COPY target/java-app-1.0-SNAPSHOT.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+FROM jenkins/jenkins:lts
 
+USER root
+
+# Install only Docker CLI (lightweight)
+RUN apt-get update && \
+    apt-get install -y docker-cli && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+USER jenkins
