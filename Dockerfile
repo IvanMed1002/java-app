@@ -1,13 +1,9 @@
-FROM jenkins/jenkins:lts
+FROM eclipse-temurin:17-jdk
 
-USER root
+WORKDIR /app
 
-RUN apt-get update && \
-    apt-get install -y docker.io curl && \
-    curl -LO "https://dl.k8s.io/release/v1.29.0/bin/linux/amd64/kubectl" && \
-    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl && \
-    rm kubectl && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+COPY target/java-app-1.0-SNAPSHOT.jar app.jar
 
-USER jenkins
+EXPOSE 8080
+
+CMD ["java", "-jar", "app.jar"]
