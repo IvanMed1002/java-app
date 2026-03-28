@@ -7,12 +7,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/IvanMed1002/java-app', branch: 'main'
-            }
-        }
-
         stage('Build') {
             steps {
                 script {
@@ -45,26 +39,19 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    sh 'docker build -t ${DOCKER_IMAGE} .'
-                }
+                sh 'docker build -t ${DOCKER_IMAGE} .'
             }
         }
 
         stage('Push to Docker Hub') {
             steps {
-                script {
-                    sh 'docker login -u ivanskool -p iala_153523'
-                    sh 'docker push ${DOCKER_IMAGE}'
-                }
+                sh 'docker push ${DOCKER_IMAGE}'
             }
         }
 
         stage('Deploy to Kubernetes') {
             steps {
-                script {
-                    sh 'kubectl apply -f deployment.yaml'
-                }
+                sh 'kubectl apply -f deployment.yaml'
             }
         }
     }
