@@ -1,11 +1,20 @@
 package com.example;
 
-public class App {
-    public static void main(String[] args) throws InterruptedException {
-        System.out.println("Hello from CI/CD Pipeline!");
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-        while (true) {
-            Thread.sleep(10000);
-        }
+@SpringBootApplication
+@RestController
+public class App {
+
+    public static void main(String[] args) {
+        SpringApplication.run(App.class, args);
+    }
+
+    @GetMapping("/")
+    public String hello() {
+        return "Hello from CI/CD Pipeline!";
     }
 }
