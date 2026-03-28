@@ -26,12 +26,11 @@ pipeline {
                 }
             }
         }
-
         stage('Static Code Analysis') {
             steps {
                 script {
                     docker.image('maven:3.8.8-eclipse-temurin-8').inside {
-                        sh 'mvn sonar:sonar -Dsonar.host.url=${SONARQUBE_SERVER}'
+                        sh 'mvn sonar:sonar -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=sqa_007e84b2692fb5a14ba0e961034df52f3cd384e8'
                     }
                 }
             }
