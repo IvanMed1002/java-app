@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     docker.image('maven:3.9.9-eclipse-temurin-11').inside {
-                        sh 'mvn sonar:sonar -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=YOUR_TOKEN'
+                        sh 'mvn sonar:sonar -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=sqa_ffb5672122b1360ed504425825f22f9565feaa2b'
                     }
                 }
             }
