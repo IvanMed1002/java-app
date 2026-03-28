@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SONARQUBE_SERVER = 'http://sonar:9000'
+        SONARQUBE_SERVER = 'http://host.docker.internal:9000'
         DOCKER_IMAGE = 'ivanskool/java-app:latest'
     }
 
